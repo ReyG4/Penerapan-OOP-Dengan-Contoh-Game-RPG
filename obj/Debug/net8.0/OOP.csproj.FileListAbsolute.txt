@@ -1,0 +1,14 @@
+D:\Belajar\C#\SoalOOP\OOP\bin\Debug\net8.0\OOP.exe
+D:\Belajar\C#\SoalOOP\OOP\bin\Debug\net8.0\OOP.deps.json
+D:\Belajar\C#\SoalOOP\OOP\bin\Debug\net8.0\OOP.runtimeconfig.json
+D:\Belajar\C#\SoalOOP\OOP\bin\Debug\net8.0\OOP.dll
+D:\Belajar\C#\SoalOOP\OOP\bin\Debug\net8.0\OOP.pdb
+D:\Belajar\C#\SoalOOP\OOP\obj\Debug\net8.0\OOP.GeneratedMSBuildEditorConfig.editorconfig
+D:\Belajar\C#\SoalOOP\OOP\obj\Debug\net8.0\OOP.AssemblyInfoInputs.cache
+D:\Belajar\C#\SoalOOP\OOP\obj\Debug\net8.0\OOP.AssemblyInfo.cs
+D:\Belajar\C#\SoalOOP\OOP\obj\Debug\net8.0\OOP.csproj.CoreCompileInputs.cache
+D:\Belajar\C#\SoalOOP\OOP\obj\Debug\net8.0\OOP.dll
+D:\Belajar\C#\SoalOOP\OOP\obj\Debug\net8.0\refint\OOP.dll
+D:\Belajar\C#\SoalOOP\OOP\obj\Debug\net8.0\OOP.pdb
+D:\Belajar\C#\SoalOOP\OOP\obj\Debug\net8.0\OOP.genruntimeconfig.cache
+D:\Belajar\C#\SoalOOP\OOP\obj\Debug\net8.0\ref\OOP.dll
