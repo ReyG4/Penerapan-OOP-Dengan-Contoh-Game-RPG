@@ -8,7 +8,7 @@ class DriedMeat : Item
 
     public override void ShowInfo()
     {
-        Console.WriteLine($"Item: {Name}");
+        base.ShowInfo();
         Console.WriteLine("Efek: Pulihkan 30 Hunger saat digunakan.");
     }
 

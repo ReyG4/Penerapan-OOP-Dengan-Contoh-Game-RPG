@@ -8,7 +8,7 @@ class BandageRoll : Item
 
     public override void ShowInfo()
     {
-        Console.WriteLine($"Item: {Name}");
+        base.ShowInfo();
         Console.WriteLine("Efek: Mengembalikan 25 HP saat digunakan.");
     }
 

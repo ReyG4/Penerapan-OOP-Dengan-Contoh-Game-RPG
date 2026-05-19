@@ -13,7 +13,8 @@ class Item(string name, int useLeft) : IUseable
     public virtual void ShowInfo()
     {
         Console.WriteLine($"Item: {Name}");
-        Console.WriteLine("Efek: Tidak ada");
+        Console.WriteLine($"Julmah: {Quantity}");
+        Console.WriteLine($"Dapat dignakan sebanyak: {UseLeft}");
     }
 
     public virtual void UseItem(Player player)
@@ -22,13 +23,23 @@ class Item(string name, int useLeft) : IUseable
         Quantity--;
         UseLeft--;
         Console.WriteLine($"{Name} tersisa: {Quantity} dengan penggunaan tersisa: {UseLeft}");
-        Finished();
+        Finished(player);
         Lose(player);
     }
 
-    public virtual void Finished()
+    public virtual void Finished(Player player)
     {
-        if (UseLeft <= 0)
+        var existingItem = player.Inventory.FirstOrDefault(
+            i => i.Name.Equals(
+                Name,
+                StringComparison.OrdinalIgnoreCase)
+            );
+        if (existingItem == null)
+        {
+            return;
+        }
+
+        if (existingItem.UseLeft <= 0)
         {
             Console.WriteLine($"Kamu sudah kehabisan penggunaan {Name}.");
         }
@@ -36,7 +47,17 @@ class Item(string name, int useLeft) : IUseable
 
     public virtual void Lose(Player player)
     {
-        if (Quantity <= 0)
+        var existingItem = player.Inventory.FirstOrDefault(
+            i => i.Name.Equals(
+                Name,
+                StringComparison.OrdinalIgnoreCase)
+            );
+        if (existingItem == null)
+        {
+            return;
+        }
+
+        if (existingItem.Quantity <= 0)
         {
             Console.WriteLine($"{Name} sudah habis dari inventory mu.");
             player.Inventory.Remove(this);

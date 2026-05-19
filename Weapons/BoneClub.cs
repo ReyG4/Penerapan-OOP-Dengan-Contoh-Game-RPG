@@ -4,11 +4,11 @@ namespace OOP.Weapons;
 
 class BoneClub : Weapon
 {
-    public BoneClub() : base("Bone Club", 40) { DropRate = 10; }
+    public BoneClub() : base("Bone Club", 50) { DropRate = 10; }
 
     public override void ShowInfo()
     {
-        Console.WriteLine($"Weapon: {Name}, Damage: {Damage}");
+        base.ShowInfo();
         Console.WriteLine("Efek Khusus: Kehilangan 5 Sanity sebagai bayaran damage yang besar.");
     }
 

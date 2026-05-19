@@ -9,6 +9,7 @@ class Player(string name) : ICanDamageable, ICanAttack
     int _hp = 100;
     int _sanity = 100;
     int _hunger = 0;
+    int _damage = 20;
 
     public List<Item> Inventory { get; set; } = [];
 
@@ -16,8 +17,9 @@ class Player(string name) : ICanDamageable, ICanAttack
     public int Hp => _hp;
     public int Sanity => _sanity;
     public int Hunger => _hunger;
+    public int Damage => _damage;
     public Weapon? EquippedWeapon { get; set; }
-    public bool effectTorch { get; set; } = false;
+    public bool EffectTorch { get; set; } = false;
 
     public void TakeDamage(int damage)
     {
@@ -29,7 +31,11 @@ class Player(string name) : ICanDamageable, ICanAttack
     public void LossSanity(int sanity)
     {
         if (sanity < 0) return;
-        if (effectTorch) sanity -= 5;
+        if (EffectTorch)
+        {
+            sanity -= 10;
+            EffectTorch = false;
+        }
         _sanity -= sanity;
         Console.WriteLine($"{Name} kamu kehilangan {sanity} sanity, sisa sanity kamu {_sanity}");
     }
@@ -41,10 +47,16 @@ class Player(string name) : ICanDamageable, ICanAttack
         Console.WriteLine($"{Name} kamu menggunakan {weapon.Name} sebagai senjata.");
     }
 
-    public void Attack(int damage)
+    public void Attack()
     {
-        if (damage < 0) return;
-        Console.WriteLine($"{Name} kamu menyerang dengan damage {damage}");
+        if (EquippedWeapon != null)
+        {
+            EquippedWeapon.Attack(this);
+        }
+        else
+        {
+            Console.WriteLine($"{Name} kamu menyerang dengan damage {_damage}");
+        }
     }
 
     public void WeaponAttack(Weapon weapon)
@@ -160,12 +172,25 @@ class Player(string name) : ICanDamageable, ICanAttack
         {
             itemFound.ShowInfo();
         }
+    }
 
+    public void AddToInventory(Item itemFound)
+    {
         var existingItem = Inventory.FirstOrDefault(
             i => i.Name.Equals(
                 itemFound.Name,
                 StringComparison.OrdinalIgnoreCase)
             );
 
+        if (existingItem != null)
+        {
+            existingItem.Quantity += itemFound.Quantity;
+            Console.WriteLine($"Quantity {itemFound.Name} ditambahkan. Jumlah {existingItem.Quantity}");
+        }
+        else
+        {
+            Inventory.Add(itemFound);
+            Console.WriteLine($"Kamu mengambil {itemFound.Name}\n{itemFound.Name} dimasukan ke inventory");
+        }
     }
 }

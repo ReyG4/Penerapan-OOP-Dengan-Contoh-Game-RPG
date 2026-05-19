@@ -16,7 +16,6 @@ class Weapon(string name, int damage) : Item(name, 1), IWeapon
     public override void ShowInfo()
     {
         Console.WriteLine($"Weapon: {Name}, Damage: {Damage}");
-        Console.WriteLine("Efek Khusus: Tidak ada");
     }
 
 }

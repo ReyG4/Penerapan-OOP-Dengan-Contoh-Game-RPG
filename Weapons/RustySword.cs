@@ -4,11 +4,11 @@ namespace OOP.Weapons;
 
 class RustySword : Weapon
 {
-    public RustySword() : base("Rusty Sword", 25) { DropRate = 15; }
+    public RustySword() : base("Rusty Sword", 35) { DropRate = 15; }
 
     public override void ShowInfo()
     {
-        Console.WriteLine($"Weapon: {Name}, Damage: {Damage}");
+        base.ShowInfo();
         Console.WriteLine("Efek Khusus: Memiliki kesempatan 20% patah saat digunakan.");
     }
 

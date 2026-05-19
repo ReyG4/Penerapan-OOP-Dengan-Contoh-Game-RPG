@@ -4,7 +4,7 @@ namespace OOP.Weapons;
 
 class Torch : Weapon
 {
-    public Torch() : base("Torch", 10)
+    public Torch() : base("Torch", 25)
     {
         UseLeft = 3;
         DropRate = 25;
@@ -17,20 +17,26 @@ class Torch : Weapon
 
     public override void UseItem(Player player)
     {
-        Console.WriteLine($"Kamu menggunakan {Name}, Mengurangi sanity sebesar 10 point.");
-        UseLeft--;
-        if (UseLeft <= 0)
+        var existingItem = player.Inventory.FirstOrDefault(
+            i => i.Name.Equals(
+                Name,
+                StringComparison.OrdinalIgnoreCase)
+            );
+        Console.WriteLine($"Kamu menggunakan {Name}, Mengurangi pengurangan sanity sebesar 10 point.");
+        existingItem!.UseLeft--;
+        if (existingItem.UseLeft <= 0)
         {
-            Quantity--;
+            existingItem.Quantity--;
         }
+        TorchEffect(player);
         Console.WriteLine($"Penggunaan {Name} tersisa: {UseLeft}");
-        Finished();
+        Finished(player);
         Lose(player);
     }
 
     public void TorchEffect(Player player)
     {
-        player.effectTorch = true;
+        player.EffectTorch = true;
     }
 
 }

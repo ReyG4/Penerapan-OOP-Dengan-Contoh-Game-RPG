@@ -8,7 +8,7 @@ class WineCup : Item
 
     public override void ShowInfo()
     {
-        Console.WriteLine($"Item: {Name}");
+        base.ShowInfo();
         Console.WriteLine("Efek: Pulihkan 20 Sanity tapi memberikan 15 Hunger saat digunakan.");
     }
 

@@ -11,7 +11,7 @@ class Skeleton : Enemy
         Console.WriteLine($"Damage: {Damage}");
         Console.WriteLine("Memiliki kesempatan 30% kabur ketika HP dibawah 20");
     }
-    public void SpesialAbility()
+    public bool SpesialAbility()
     {
         if (Hp > 20)
         {
@@ -20,14 +20,16 @@ class Skeleton : Enemy
             if (chanceRun <= 30)
             {
                 Console.WriteLine($"{Name} berhasil mengelabui mu dan pergi meninggalkan mu!");
+                return true;
             }
         }
+        return false;
     }
 
-    public override void Attack(int damage)
+    public override void Attack()
     {
-        if (damage < 0) return;
-        Console.WriteLine($"{Name} menyerang dengan tulangnya! memberikan {damage} damage!");
+        if (Damage < 0) return;
+        Console.WriteLine($"{Name} menyerang dengan tulangnya! memberikan {Damage} damage!");
     }
 
 

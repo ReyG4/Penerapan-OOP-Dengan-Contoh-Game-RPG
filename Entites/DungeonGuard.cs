@@ -4,7 +4,7 @@ class DungeonGuard : Enemy
 {
     bool braceSkill = true;
     bool usedSkill = false;
-    public DungeonGuard() : base("Dungeon Guard", 150, 40) { }
+    public DungeonGuard() : base("Dungeon Guard", 150, 25) { }
 
     public override void InfoEnemy()
     {
@@ -25,10 +25,10 @@ class DungeonGuard : Enemy
         }
     }
 
-    public override void Attack(int damage)
+    public override void Attack()
     {
-        if (damage < 0) return;
-        Console.WriteLine($"{Name} Menyerang dengan pedangnya! Memberikan {damage} damage");
+        if (Damage < 0) return;
+        Console.WriteLine($"{Name} Menyerang dengan pedangnya! Memberikan {Damage} damage");
     }
 
     public override void TakeDamage(int damage)
@@ -36,6 +36,7 @@ class DungeonGuard : Enemy
         if (braceSkill && !usedSkill)
         {
             damage /= 2;
+            Console.WriteLine("BRACE aktif");
             base.TakeDamage(damage);
             usedSkill = true;
         }

@@ -12,3 +12,4 @@ D:\Belajar\C#\SoalOOP\OOP\obj\Debug\net8.0\refint\OOP.dll
 D:\Belajar\C#\SoalOOP\OOP\obj\Debug\net8.0\OOP.pdb
 D:\Belajar\C#\SoalOOP\OOP\obj\Debug\net8.0\OOP.genruntimeconfig.cache
 D:\Belajar\C#\SoalOOP\OOP\obj\Debug\net8.0\ref\OOP.dll
+D:\Belajar\C#\SoalOOP\OOP\obj\Debug\net8.0\OOP.sourcelink.json
