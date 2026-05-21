@@ -6,23 +6,34 @@ using OOP.Weapons;
 Player player = new("Excel");
 SummonEnemy summonEnemy = new();
 DropItems dropItems = new();
-Torch torch1 = new();
-BandageRoll rusty = new();
-player.UseWeapon(torch1);
-player.Inventory.Add(rusty);
 
-Console.WriteLine("===Selamat Data di Prgatory===");
-Console.WriteLine("Selesaikan 10 Ruangan untuk keluar dari sini");
+Console.WriteLine("===Selamat Data di Purgatory===");
+Console.WriteLine("Selesaikan 5 Ruangan untuk keluar dari sini");
 player.ShowStatus();
 Console.WriteLine("Jangan sampai sanity mu habis dan kamu kelaparan, Ingat Itu!!! ");
 
 Console.Write("Sudah Siap Untuk Menjelajah? (Y) ");
 string play = Console.ReadLine() ?? "";
 
-if (play == "Y")
+if (play == "Y" || play == "y")
 {
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < 5; i++)
     {
+        if (player.Hp <= 0)
+        {
+            Console.WriteLine($"{player.Name} Kamu kehabisan HP, kamu mati dan membusuk disini!!");
+            break;
+        }
+        if (player.Sanity <= 0)
+        {
+            Console.WriteLine($"{player.Name} Kamu kehilangan sanity mu, Kamu gila dan berakhir menjadi monster disini");
+            break;
+        }
+        if (player.Hunger == 100)
+        {
+            player.TakeDamage(10);
+            Console.WriteLine("Kamu terlalu lapar. HP mu berkurang 10");
+        }
         Console.WriteLine("Kamu mamsasuki ruangan");
         Enemy enemy = summonEnemy.SummoningEnemy();
         Console.WriteLine("Sesuatu Muncul!!");
@@ -188,7 +199,6 @@ if (play == "Y")
                     break;
                 case "3":
                     player.Attack();
-                    enemy.TakeDamage(enemy.Hp - 1);
                     if (player.EquippedWeapon != null)
                     {
                         enemy.TakeDamage(player.EquippedWeapon.Damage);
@@ -260,6 +270,10 @@ if (play == "Y")
                     break;
             }
         }
+    }
+    if (player.Hp > 0 && player.Sanity > 0)
+    {
+        Console.WriteLine($"Selamat {player.Name} Kamu berhasil kelur dari purgatory sekarang kamu bebas. Tapi kesengsaraan mengintaimu di depan :D");
     }
 }
 else

@@ -59,13 +59,6 @@ class Player(string name) : ICanDamageable, ICanAttack
         }
     }
 
-    public void WeaponAttack(Weapon weapon)
-    {
-        if (weapon == null) return;
-        var weaponUsed = weapon;
-        weaponUsed.Attack(this);
-    }
-
     public void Heal(int heal)
     {
         if (heal < 0) return;
