@@ -1,13 +1,9 @@
 ﻿using OOP.Entites;
-using OOP.Items;
 using OOP.SystemGame;
-using OOP.Weapons;
 
 Player player = new("Excel");
 SummonEnemy summonEnemy = new();
 DropItems dropItems = new();
-Torch torch = new();
-player.AddToInventory(torch);
 
 Console.WriteLine("===Selamat Data di Purgatory===");
 Console.WriteLine("Selesaikan 5 Ruangan untuk keluar dari sini");
@@ -73,17 +69,8 @@ if (play == "Y" || play == "y")
                     }
                     break;
                 case "3":
-                    player.Attack();
-                    enemy.TakeDamage(enemy.Hp - 1);
-                    if (player.EquippedWeapon != null)
-                    {
-                        enemy.TakeDamage(player.EquippedWeapon.Damage);
-                    }
-                    else
-                    {
-                        enemy.TakeDamage(player.Damage);
-                    }
-
+                    AttackSystem attackSystem = new();
+                    attackSystem.PlayerAttack(player, enemy);
                     if (enemy is Skeleton skeleton)
                     {
                         bool escape = skeleton.SpesialAbility();
@@ -94,52 +81,13 @@ if (play == "Y" || play == "y")
                             break;
                         }
                     }
-
-                    if (enemy.Hp <= 0)
+                    bool enemyDie = attackSystem.EnemyDead(enemy, dropItems, player);
+                    if (enemyDie)
                     {
-                        Console.WriteLine($"{enemy.Name} Berhasil dikalahkan");
-                        Random rnd = new();
-                        int drop = rnd.Next(0, 2);
-                        if (drop == 1)
-                        {
-                            Item itemDrop = dropItems.RandomDropItem();
-                            player.FoundItem(itemDrop);
-                            Console.Write("Ambil tidak?(y/n) ");
-                            string take = Console.ReadLine() ?? "";
-                            if (take == "y")
-                            {
-                                player.AddToInventory(itemDrop);
-                            }
-                            else
-                            {
-                                Console.WriteLine("Kamu membiarkan nya");
-                            }
-                        }
-                        Console.WriteLine($"Kamu memasuki ruangan berikutnya, kamu mendapatkan sedikit heal, tapi kamu menjadi lapar");
-                        player.Heal(20);
-                        player.IncreaseHunger(10);
                         round = false;
                         break;
                     }
-
-                    Console.WriteLine("<><><>");
-                    Console.WriteLine($"{enemy.Name} menyerang");
-                    if (enemy is HabreCultist habreCultist)
-                    {
-                        habreCultist.SpesialAbility(player);
-                    }
-                    else if (enemy is CrowMauler crowMauler2)
-                    {
-                        int crowMaulerDamage = crowMauler2.Attack(player);
-                        player.TakeDamage(crowMaulerDamage);
-                        player.TakeDamage(crowMaulerDamage);
-                    }
-                    else
-                    {
-                        enemy.Attack();
-                        player.TakeDamage(enemy.Damage);
-                    }
-
+                    attackSystem.EnemyAttack(enemy, player);
                     break;
                 default:
                     Console.WriteLine("Tidak ada pilihan itu");
