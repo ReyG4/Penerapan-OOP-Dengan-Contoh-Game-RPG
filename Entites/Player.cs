@@ -34,7 +34,6 @@ class Player(string name) : ICanDamageable, ICanAttack
         if (EffectTorch)
         {
             sanity -= 10;
-            EffectTorch = false;
         }
         _sanity -= sanity;
         Console.WriteLine($"{Name} kamu kehilangan {sanity} sanity, sisa sanity kamu {_sanity}");
@@ -134,22 +133,28 @@ class Player(string name) : ICanDamageable, ICanAttack
 
     public void UseItem(int index)
     {
-        int trueIndex = index - 1;
-        if (trueIndex >= 0 && trueIndex < Inventory.Count)
+        if (index >= 0 && index < Inventory.Count)
         {
-            var item = Inventory[trueIndex];
+            var item = Inventory[index];
             item.UseItem(this);
         }
     }
 
     public void DiscardItem(int index)
     {
-        int trueIndex = index - 1;
-        if (trueIndex >= 0 && trueIndex < Inventory.Count)
+        if (index >= 0 && index < Inventory.Count)
         {
-            var item = Inventory[trueIndex];
+            var item = Inventory[index];
             Console.WriteLine($"{Name} kamu membuang {item.Name}");
-            Inventory.RemoveAt(trueIndex);
+            if (Inventory[index] is Weapon weapon)
+            {
+                if (EquippedWeapon == weapon)
+                {
+                    EquippedWeapon = null;
+                    Console.WriteLine("Kamu kehilangan senjata yang kamu pakai");
+                }
+            }
+            Inventory.RemoveAt(index);
         }
     }
 

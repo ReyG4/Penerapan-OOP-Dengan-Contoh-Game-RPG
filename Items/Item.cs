@@ -1,5 +1,6 @@
 using OOP.Entites;
 using OOP.Interface;
+using OOP.Weapons;
 
 namespace OOP.Items;
 
@@ -19,9 +20,13 @@ class Item(string name, int useLeft) : IUseable
 
     public virtual void UseItem(Player player)
     {
+        var existingItem = player.Inventory.FirstOrDefault(
+            i => i.Name.Equals(
+                Name,
+                StringComparison.OrdinalIgnoreCase)
+            );
         Console.WriteLine($"Kamu menggunakan {Name}.");
-        Quantity--;
-        UseLeft--;
+        existingItem!.UseLeft--;
         Console.WriteLine($"{Name} tersisa: {Quantity} dengan penggunaan tersisa: {UseLeft}");
         Finished(player);
         Lose(player);
@@ -42,6 +47,11 @@ class Item(string name, int useLeft) : IUseable
         if (existingItem.UseLeft <= 0)
         {
             Console.WriteLine($"Kamu sudah kehabisan penggunaan {Name}.");
+            existingItem.Quantity--;
+            if (existingItem.Quantity > 0)
+            {
+                existingItem.UseLeft++;
+            }
         }
     }
 
@@ -60,6 +70,14 @@ class Item(string name, int useLeft) : IUseable
         if (existingItem.Quantity <= 0)
         {
             Console.WriteLine($"{Name} sudah habis dari inventory mu.");
+            if (existingItem is Torch torch)
+            {
+                if (player.EquippedWeapon == torch)
+                {
+                    player.EquippedWeapon = null;
+                    Console.WriteLine("Kamu kehilangan senjata yang kamu pakai");
+                }
+            }
             player.Inventory.Remove(this);
         }
     }

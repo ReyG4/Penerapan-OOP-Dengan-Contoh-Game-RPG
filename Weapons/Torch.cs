@@ -27,6 +27,10 @@ class Torch : Weapon
         if (existingItem.UseLeft <= 0)
         {
             existingItem.Quantity--;
+            if (existingItem.Quantity >= 0)
+            {
+                existingItem.UseLeft = 3;
+            }
         }
         TorchEffect(player);
         Console.WriteLine($"Penggunaan {Name} tersisa: {UseLeft}");
