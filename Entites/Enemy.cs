@@ -1,6 +1,6 @@
 using OOP.Interface;
 
-namespace OOP.Entites;
+namespace OOP.Entities;
 
 class Enemy(string name, int hp, int damage) : ICanAttack, ICanDamageable
 {

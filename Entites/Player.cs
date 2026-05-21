@@ -1,4 +1,4 @@
-namespace OOP.Entites;
+namespace OOP.Entities;
 
 using OOP.Interface;
 using OOP.Items;
@@ -9,7 +9,6 @@ class Player(string name) : ICanDamageable, ICanAttack
     int _hp = 100;
     int _sanity = 100;
     int _hunger = 0;
-    int _damage = 20;
 
     public List<Item> Inventory { get; set; } = [];
 
@@ -17,7 +16,7 @@ class Player(string name) : ICanDamageable, ICanAttack
     public int Hp => _hp;
     public int Sanity => _sanity;
     public int Hunger => _hunger;
-    public int Damage => _damage;
+    public int Damage { get; } = 20;
     public Weapon? EquippedWeapon { get; set; }
     public bool EffectTorch { get; set; } = false;
 
@@ -54,7 +53,7 @@ class Player(string name) : ICanDamageable, ICanAttack
         }
         else
         {
-            Console.WriteLine($"{Name} kamu menyerang dengan damage {_damage}");
+            Console.WriteLine($"{Name} kamu menyerang dengan damage {Damage}");
         }
     }
 
@@ -161,15 +160,7 @@ class Player(string name) : ICanDamageable, ICanAttack
     public void FoundItem(Item itemFound)
     {
         Console.WriteLine($"{Name} kamu menemukan {itemFound.Name}!");
-
-        if (itemFound is Weapon)
-        {
-            itemFound.ShowInfo();
-        }
-        else
-        {
-            itemFound.ShowInfo();
-        }
+        itemFound.ShowInfo();
     }
 
     public void AddToInventory(Item itemFound)

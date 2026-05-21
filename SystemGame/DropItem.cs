@@ -28,7 +28,7 @@ class DropItems
         foreach (var draf in drafInventory)
         {
             cumulative += draf.DropRate;
-            if (roll <= draf.DropRate)
+            if (roll <= cumulative)
             {
                 return draf;
             }

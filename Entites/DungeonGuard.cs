@@ -1,8 +1,8 @@
-namespace OOP.Entites;
+namespace OOP.Entities;
 
 class DungeonGuard : Enemy
 {
-    bool braceSkill = true;
+    bool braceSkill = false;
     bool usedSkill = false;
     public DungeonGuard() : base("Dungeon Guard", 150, 25) { }
 

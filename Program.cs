@@ -1,4 +1,4 @@
-﻿using OOP.Entites;
+﻿using OOP.Entities;
 using OOP.SystemGame;
 
 Player player = new("Excel");
@@ -37,10 +37,10 @@ if (play == "Y" || play == "y")
         Console.WriteLine("Sesuatu Muncul!!");
         enemy.InfoEnemy();
         bool round = true;
+        int roundCount = 0;
         while (round)
         {
             if (player.Hp <= 0 || player.Sanity <= 0) break;
-            int roundCount = 0;
             if (roundCount == 3 && player.EffectTorch == true)
             {
                 player.EffectTorch = false;
@@ -69,6 +69,7 @@ if (play == "Y" || play == "y")
                     }
                     break;
                 case "3":
+                    roundCount++;
                     AttackSystem attackSystem = new();
                     attackSystem.PlayerAttack(player, enemy);
                     if (enemy is Skeleton skeleton)

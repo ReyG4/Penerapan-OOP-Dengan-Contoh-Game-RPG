@@ -1,4 +1,4 @@
-namespace OOP.Entites;
+namespace OOP.Entities;
 
 class CrowMauler : Enemy
 {
@@ -25,10 +25,6 @@ class CrowMauler : Enemy
         }
     }
 
-    public override void Attack()
-    {
-        base.Attack();
-    }
     public int Attack(Player player)
     {
         if (Damage < 0) return 0;

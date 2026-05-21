@@ -1,4 +1,4 @@
-using OOP.Entites;
+using OOP.Entities;
 
 namespace OOP.Interface;
 

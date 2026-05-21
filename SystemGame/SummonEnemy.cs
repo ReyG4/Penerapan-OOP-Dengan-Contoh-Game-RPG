@@ -1,6 +1,6 @@
 namespace OOP.SystemGame;
 
-using OOP.Entites;
+using OOP.Entities;
 
 class SummonEnemy()
 {

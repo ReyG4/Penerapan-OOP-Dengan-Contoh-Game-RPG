@@ -1,4 +1,4 @@
-namespace OOP.Entites;
+namespace OOP.Entities;
 
 class Skeleton : Enemy
 {
@@ -13,7 +13,7 @@ class Skeleton : Enemy
     }
     public bool SpesialAbility()
     {
-        if (Hp > 20)
+        if (Hp < 20)
         {
             Random rnd = new();
             int chanceRun = rnd.Next(1, 101);

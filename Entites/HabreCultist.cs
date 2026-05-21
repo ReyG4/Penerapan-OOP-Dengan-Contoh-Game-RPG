@@ -1,4 +1,4 @@
-namespace OOP.Entites;
+namespace OOP.Entities;
 
 class HabreCultist : Enemy
 {
